@@ -47,8 +47,8 @@ async def rgb_role_color(role):
 async def on_ready():
     print(f'Logged in as {client.user}')
 
-    guild_id = '1276937434877132893'  # Replace with your server ID
-    role_id = '1336699795481300992'    # Replace with your role ID
+    guild_id = 'dfdf'  # Replace with your server ID
+    role_id = 'dfdf'    # Replace with your role ID
 
     guild = client.get_guild(int(guild_id))
     if guild:
