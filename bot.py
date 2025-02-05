@@ -2,36 +2,35 @@ import discord
 import asyncio
 
 # Your bot's token
-TOKEN = 'MTMwODc4MDM2MDczMzAzNjYxNQ.GE6J8O.OmcJi-j0AcrBPXoY-bMsuSTgn2L6YtoEucrcZU'
+TOKEN = 'MTMwODc4MDM2MDczMzAzNjYxNQ.G1R-9i.7B_hbaYYoyb9OWKoflaC8yGzbOx5VAXkMyJsCo'
 
 # Create a client instance
 intents = discord.Intents.default()
 intents.guilds = True
 client = discord.Client(intents=intents)
 
-# Color change interval (100ms)
-interval = 0.1  # 100ms in seconds
+# Color change interval (seconds)
+interval = 2.0  # 2 seconds delay to avoid hitting rate limits
 
-# Generate RGB colors (example)
-def generate_rgb_colors():
-    colors = []
-    for r in range(255, -1, -15):
-        colors.append(f"#{r:02x}00ff")
-    for g in range(0, 256, 15):
-        colors.append(f"#ff{g:02x}00")
-    for b in range(255, -1, -15):
-        colors.append(f"#00ff{b:02x}")
-    return colors
+# Define the colors (RGB values for red, green, blue, and pink)
+colors = [
+    discord.Color(0xFF0000),  # Red
+    discord.Color(0x00FF00),  # Green
+    discord.Color(0x0000FF),  # Blue
+    discord.Color(0xFF69B4),  # Pink
+]
 
 # Function to handle role color updates with rate limit handling
 async def rgb_role_color(role):
     color_index = 0
-    colors = generate_rgb_colors()
 
     while True:
         try:
-            await role.edit(color=discord.Color(int(colors[color_index][1:], 16)))
+            # Change the role color
+            await role.edit(color=colors[color_index])
             print(f"Updated role color to: {colors[color_index]}")
+            
+            # Move to the next color in the list, looping back to the start
             color_index = (color_index + 1) % len(colors)
         except discord.errors.HTTPException as e:
             if e.code == 50035:
@@ -41,7 +40,9 @@ async def rgb_role_color(role):
                 await asyncio.sleep(retry_after)  # Wait before retrying
             else:
                 print(f"Error changing role color: {e}")
-        await asyncio.sleep(interval)  # Delay between color changes
+        
+        # Delay between color changes
+        await asyncio.sleep(interval)
 
 @client.event
 async def on_ready():
