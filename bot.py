@@ -10,7 +10,7 @@ intents.guilds = True
 client = discord.Client(intents=intents)
 
 # Color change interval (100ms)
-interval = 0.1  # 100ms in seconds
+interval = 1.0 # 100ms in seconds
 
 # Generate RGB colors (example)
 def generate_rgb_colors():
