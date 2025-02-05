@@ -2,7 +2,7 @@ import discord
 import asyncio
 
 # Your bot's token
-TOKEN = 'MTMwODc4MDM2MDczMzAzNjYxNQ.G1R-9i.7B_hbaYYoyb9OWKoflaC8yGzbOx5VAXkMyJsCo'
+
 
 # Create a client instance
 intents = discord.Intents.default()
@@ -48,8 +48,8 @@ async def rgb_role_color(role):
 async def on_ready():
     print(f'Logged in as {client.user}')
 
-    guild_id = '1276937434877132893'  # Replace with your server ID
-    role_id = '1336699795481300992'    # Replace with your role ID
+
+
 
     guild = client.get_guild(int(guild_id))
     if guild:
