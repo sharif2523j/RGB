@@ -2,7 +2,7 @@ import discord
 import asyncio
 
 # Your bot's token
-TOKEN = 'MTMwODc4MDM2MDczMzAzNjYxNQ.GinnuC.8jn9o3qAAps8dJE82hgxn6nlv4v9gv4Lq74g8o'
+
 
 # Create a client instance
 intents = discord.Intents.default()
